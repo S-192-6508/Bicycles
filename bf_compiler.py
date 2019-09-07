@@ -18,17 +18,18 @@ a, b = 1, avg
 # Цена равна сумме множителей и остатка от разности оптимального числа (модуль разности произведение оптимальных множителей и среднего числа)
 for i in range(avg - int(avg * SearchRadius), avg + int(avg * SearchRadius) + 1):
     for j in range(1, i // 2 + 1):
-        if(i % j == 0) and (i // j + j + abs(avg - i) < a + b + abs(avg - a * b)):
-            a, b = i//j, j
-print("Average: {0}, Optimal Nearest: {1}, Optimal Multipliers: {2} {3}, Cost: {4}".format(avg, a * b, a, b, a+b+abs(avg - a * b)))
+        if (i % j == 0) and (i // j + j + abs(avg - i) < a + b + abs(avg - a * b)):
+            a, b = i // j, j
+print("Average: {0}, Optimal Nearest: {1}, Optimal Multipliers: {2} {3}, Cost: {4}".format(avg, a * b, a, b,
+                                                                                           a + b + abs(avg - a * b)))
 # Сборка строки кода в зависимости от длины введённой пользователем строки
-if(len(text_string)>1):
-    bf_code = '+' * a + "[>" + '+' * b + "<-]" + ">[" + ">+" * len(text_string) + "<" * len(text_string)+"-]"
+if (len(text_string) > 1):
+    bf_code = '+' * a + "[>" + '+' * b + "<-]" + ">[" + ">+" * len(text_string) + "<" * len(text_string) + "-]"
     for charect in text_string:
-        if(ord(charect) - avg > 0):
-            bf_code += '>' + '+'*(ord(charect) - a*b) + '.'
+        if (ord(charect) - avg > 0):
+            bf_code += '>' + '+' * (ord(charect) - a * b) + '.'
         else:
-            bf_code = '+' * a + "[>" + '+' * b + "<-]" + ">[" + ">+" * len(text_string) + "<" * len(text_string) + "-]"
+            bf_code += '>' + '-' * abs(ord(charect) - a * b) + '.'
 else:
     bf_code = '+' * a + "[>" + '+' * b + "<-]>."
 print(bf_code)
